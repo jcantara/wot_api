@@ -1,0 +1,13 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 29 May 2014 02:16:56 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 1004
+Connection: keep-alive
+Vary: Accept-Encoding
+X-Api-Version: 2.11.3
+Content-Language: en
+Access-Control-Request-Method: GET, POST, HEAD
+Access-Control-Allow-Origin: *
+
+{"status":"ok","count":1,"data":{"1001407449":[{"achievements":{"medalCarius":4,"medalAbrams":4,"titleSniper":1,"armorPiercer":1,"medalPoppel":4,"medalKay":4,"invader":1,"medalLeClerc":4,"medalKnispel":4},"account_id":1001407449,"tank_id":6401},{"achievements":{"medalCarius":4,"medalKnispel":4,"armorPiercer":1},"account_id":1001407449,"tank_id":6913},{"achievements":{"medalCarius":4,"medalAbrams":4,"armorPiercer":1,"medalKnispel":4,"medalKay":4,"titleSniper":1,"medalLeClerc":4,"supporter":1},"account_id":1001407449,"tank_id":5121},{"achievements":{"medalCarius":4,"medalLeClerc":4,"medalAbrams":4,"armorPiercer":1},"account_id":1001407449,"tank_id":3089},{"achievements":{"armorPiercer":1},"account_id":1001407449,"tank_id":545},{"achievements":{"medalCarius":4,"medalLeClerc":4,"medalAbrams":4,"medalLavrinenko":4,"armorPiercer":1},"account_id":1001407449,"tank_id":3329},{"achievements":{"titleSniper":1,"medalCarius":4,"medalAbrams":4,"armorPiercer":1},"account_id":1001407449,"tank_id":2065}]}}

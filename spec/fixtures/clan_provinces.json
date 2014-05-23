@@ -1,0 +1,12 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 29 May 2014 02:16:16 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 35
+Connection: keep-alive
+X-Api-Version: 2.11.3
+Content-Language: en
+Access-Control-Request-Method: GET, POST, HEAD
+Access-Control-Allow-Origin: *
+
+{"status":"ok","count":0,"data":{}}

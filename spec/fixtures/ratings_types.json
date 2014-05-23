@@ -1,0 +1,13 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 29 May 2014 02:16:52 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 853
+Connection: keep-alive
+Vary: Accept-Encoding
+X-Api-Version: 2.11.3
+Content-Language: en
+Access-Control-Request-Method: GET, POST, HEAD
+Access-Control-Allow-Origin: *
+
+{"status":"ok","count":4,"data":{"1":{"threshold":5,"type":"1","rank_fields":["frags_count_rank","xp_amount_rank","battles_count_rank","spotted_count_rank","damage_dealt_rank","capture_points_rank"]},"all":{"threshold":1000,"type":"all","rank_fields":["battles_count_rank","xp_max_rank","xp_avg_rank","wins_ratio_rank","frags_count_rank","hits_ratio_rank","damage_dealt_rank","global_rating_rank","survived_ratio_rank"]},"28":{"threshold":100,"type":"28","rank_fields":["frags_count_rank","xp_avg_rank","wins_ratio_rank","frags_avg_rank","hits_ratio_rank","damage_avg_rank","survived_ratio_rank","spotted_avg_rank","capture_points_rank"]},"7":{"threshold":20,"type":"7","rank_fields":["frags_count_rank","xp_amount_rank","xp_avg_rank","battles_count_rank","frags_avg_rank","hits_ratio_rank","damage_dealt_rank","damage_avg_rank","spotted_count_rank"]}}}

@@ -1,0 +1,13 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 29 May 2014 02:16:09 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 670
+Connection: keep-alive
+Vary: Accept-Encoding
+X-Api-Version: 2.11.3
+Content-Language: en
+Access-Control-Request-Method: GET, POST, HEAD
+Access-Control-Allow-Origin: *
+
+{"status":"ok","count":1,"data":[{"owner_name":"hetep","members_count":7,"name":"Allied Brotherhood Clan","color":"#B09CA1","created_at":1365732959,"abbreviation":"ABC","emblems":{"large":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_881\/1000008881\/emblem_64x64.png","small":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_881\/1000008881\/emblem_24x24.png","bw_tank":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_881\/1000008881\/emblem_64x64_tank.png","medium":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_881\/1000008881\/emblem_32x32.png"},"clan_id":1000008881,"motto":"Pro Libertate","owner_id":1003584109}]}

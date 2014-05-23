@@ -1,0 +1,13 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 29 May 2014 02:16:32 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 1911
+Connection: keep-alive
+Vary: Accept-Encoding
+X-Api-Version: 2.11.3
+Content-Language: en
+Access-Control-Request-Method: GET, POST, HEAD
+Access-Control-Allow-Origin: *
+
+{"status":"ok","count":1,"data":{"14337":{"vehicle_armor_fedd":50,"engine_power":1050,"circular_vision_radius":410,"weight":60.01,"gun_damage_min":413,"image":"http:\/\/worldoftanks.com\/static\/2.11.0\/encyclopedia\/tankopedia\/vehicle\/ussr-object263.png","is_premium":false,"contour_image":"http:\/\/worldoftanks.com\/static\/2.11.0\/encyclopedia\/tankopedia\/vehicle\/contour\/ussr-object263.png","vehicle_armor_forehead":250,"turret_armor_board":16,"crew":[{"additional_roles_i18n":[{"role_i18n":"Radio Operator","role":"radioman"}],"role_i18n":"Commander","role":"commander","additional_roles":["Radio Operator"]},{"additional_roles_i18n":[],"role_i18n":"Gunner","role":"gunner","additional_roles":[]},{"additional_roles_i18n":[],"role_i18n":"Driver","role":"driver","additional_roles":[]},{"additional_roles_i18n":[],"role_i18n":"Loader","role":"loader","additional_roles":[]},{"additional_roles_i18n":[],"role_i18n":"Loader","role":"loader","additional_roles":[]}],"max_health":1900,"parent_tanks":[],"tank_id":14337,"localized_name":"Object 263","radios":[{"is_default":false,"module_id":2823}],"engines":[{"is_default":false,"module_id":9221}],"radio_distance":720,"gun_piercing_power_max":363,"chassis_rotation_speed":32,"gun_name":"130 mm S-70A","guns":[{"is_default":false,"module_id":27652}],"gun_max_ammo":42,"limit_weight":62.5,"nation_i18n":"U.S.S.R.","vehicle_armor_board":80,"nation":"ussr","gun_piercing_power_min":218,"chassis":[{"is_default":false,"module_id":32258}],"turret_rotation_speed":26,"gun_rate":5.45,"is_gift":false,"name":"#ussr_vehicles:Object263","price_gold":0,"level":10,"type":"AT-SPG","image_small":"http:\/\/worldoftanks.com\/static\/2.11.0\/encyclopedia\/tankopedia\/vehicle\/small\/ussr-object263.png","speed_limit":55.0,"turret_armor_forehead":18,"price_xp":0,"turret_armor_fedd":10,"price_credit":6100000,"gun_damage_max":688,"name_i18n":"Object 263","turrets":[]}}}

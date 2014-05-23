@@ -1,0 +1,12 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 29 May 2014 02:16:08 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 240
+Connection: keep-alive
+X-Api-Version: 2.11.3
+Content-Language: en
+Access-Control-Request-Method: GET, POST, HEAD
+Access-Control-Allow-Origin: *
+
+{"status":"ok","count":1,"data":{"1001407449":{"achievements":{"medalCarius":3,"invader":1,"titleSniper":1,"medalLavrinenko":4,"armorPiercer":1,"medalPoppel":4,"supporter":1,"medalKay":4,"medalAbrams":3,"medalLeClerc":3,"medalKnispel":4}}}}

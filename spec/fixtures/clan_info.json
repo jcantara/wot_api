@@ -1,0 +1,13 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 29 May 2014 02:16:09 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 2240
+Connection: keep-alive
+Vary: Accept-Encoding
+X-Api-Version: 2.11.3
+Content-Language: en
+Access-Control-Request-Method: GET, POST, HEAD
+Access-Control-Allow-Origin: *
+
+{"status":"ok","count":1,"data":{"1000008881":{"members_count":7,"name":"Allied Brotherhood Clan","description_html":"<p>We are old and young. We are men and women. We are new players and good players. We are from many countries and talk many languages. We are here to have fun and have a good time.\n<\/p>","color":"#B09CA1","created_at":1365732959,"request_availability":false,"updated_at":1393639687,"private":null,"abbreviation":"ABC","emblems":{"large":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_881\/1000008881\/emblem_64x64.png","small":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_881\/1000008881\/emblem_24x24.png","bw_tank":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_881\/1000008881\/emblem_64x64_tank.png","medium":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_881\/1000008881\/emblem_32x32.png"},"clan_id":1000008881,"clan_color":"#B09CA1","members":{"1003586626":{"account_id":1003586626,"created_at":1365973238,"updated_at":0,"account_name":"abcdogface","role":"diplomat","role_i18n":"Diplomat"},"1003057708":{"account_id":1003057708,"created_at":1365733431,"updated_at":0,"account_name":"SunshineZ","role":"private","role_i18n":"Soldier"},"1007891500":{"account_id":1007891500,"created_at":1393411070,"updated_at":0,"account_name":"Petbark","role":"diplomat","role_i18n":"Diplomat"},"1003584109":{"account_id":1003584109,"created_at":1365732959,"updated_at":0,"account_name":"hetep","role":"leader","role_i18n":"Commander"},"1003961549":{"account_id":1003961549,"created_at":1393455767,"updated_at":0,"account_name":"RageUrFace","role":"recruit","role_i18n":"Recruit"},"1003054743":{"account_id":1003054743,"created_at":1365733330,"updated_at":0,"account_name":"Buffalojack","role":"diplomat","role_i18n":"Diplomat"},"1003805919":{"account_id":1003805919,"created_at":1365807873,"updated_at":0,"account_name":"sirwills","role":"vice_leader","role_i18n":"Deputy Commander"}},"is_clan_disbanded":false,"motto":"Pro Libertate","owner_id":1003584109,"victory_points":0,"description":"We are old and young. We are men and women. We are new players and good players. We are from many countries and talk many languages. We are here to have fun and have a good time."}}}

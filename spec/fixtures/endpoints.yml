@@ -1,0 +1,61 @@
+/wot/account/list/:
+  search: abc
+/wot/account/info/:
+  account_id: 1001407449
+/wot/account/tanks/:
+  account_id: 1001407449
+/wot/account/achievements/:
+  account_id: 1001407449
+/wot/clan/list/:
+  search: abc
+/wot/clan/info/:
+  clan_id: 1000008881
+/wot/clan/battles/:
+  clan_id: 1000008881
+/wot/clan/top/: {}
+/wot/clan/provinces/:
+  clan_id: 1000008881
+/wot/clan/victorypointshistory/:
+  clan_id: 1000008881
+/wot/clan/membersinfo/:
+  member_id: 1001407449
+/wot/globalwar/clans/:
+  map_id: 1
+/wot/globalwar/famepoints/:
+  map_id: 1
+  account_id: 1001407449
+/wot/globalwar/maps/: {}
+/wot/globalwar/provinces/:
+  map_id: 1
+/wot/globalwar/top/:
+  map_id: 1
+  order_by: wins_count
+/wot/globalwar/tournaments/:
+  map_id: 1
+  province_id: CA_40
+/wot/encyclopedia/tanks/: {}
+/wot/encyclopedia/tankinfo/:
+  tank_id: 14337
+/wot/encyclopedia/tankengines/: {}
+/wot/encyclopedia/tankturrets/: {}
+/wot/encyclopedia/tankradios/: {}
+/wot/encyclopedia/tankchassis/: {}
+/wot/encyclopedia/tankguns/: {}
+/wot/encyclopedia/achievements/: {}
+/wot/ratings/types/: {}
+/wot/ratings/accounts/:
+  account_id: 1001407449
+  type: all
+/wot/ratings/neighbors/:
+  account_id: 1001407449
+  type: all
+  rank_field: xp_max_rank
+/wot/ratings/top/:
+  type: all
+  rank_field: xp_max_rank
+/wot/ratings/dates/:
+  type: all
+/wot/tanks/stats/:
+  account_id: 1001407449
+/wot/tanks/achievements/:
+  account_id: 1001407449
