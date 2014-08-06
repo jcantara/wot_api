@@ -1,6 +1,6 @@
 # WotApi
 
-API wrapper for World of Tanks
+API wrapper for World of Tanks in Ruby
 
 [![Build Status](https://travis-ci.org/jcantara/wot_api.svg?branch=master)](https://travis-ci.org/jcantara/wot_api)
 
@@ -22,19 +22,32 @@ Or install it yourself as:
 
 Get an Application ID from Wargaming and read the available endpoints here: https://na.wargaming.net/developers/
 
-Initialize the gem with your Application ID:
+NOTE: Other WoT geographical regions require different Application IDs
 
-WotApi::Base.application_id = '123456'
+Initialize the gem with your Application ID(s):
+
+    WotApi::Base.config({na: '123456'})
+
+The available regions are: na, ru, eu, asia, kr
+
+The first region specified becomes the default if no region is specified in endpoint method arguments.
+
+If using Rails, it is recommended to create an initializer that looks something like:
+
+    WotApi::Base.config(YAML.load_file("#{::Rails.root}/config/wot_api.yml"))
+
+Along with a yaml file, config/wot_api.yml:
+
+    na: 123456
+    ru: 6asdf6
 
 Call endpoints like such:
 
-WotApi::Base.account_list(search: 'tank')
+    WotApi::Base.account_list(search: 'tank', region: 'ru')
 
 Will return an array or hash with the results, or nil on a failure.
 
 ## Future plans
-
-Throw exceptions on failures
 
 Add class wrappers for endpoints with convenience methods for class relationships and such. 
 

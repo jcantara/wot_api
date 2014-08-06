@@ -26,5 +26,5 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "httparty", "~> 0.13"
 
-  spec.requirements << "Application ID from Wargaming developers portal."
+  spec.requirements << "Application ID(s) from Wargaming developers portal."
 end

@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe WotApi::Base do
 
-  it "has the correct base_uri" do
-    expect(WotApi::Base.base_uri).to eq 'https://api.worldoftanks.com'
+  it "has an empty base_uri" do
+    # NOTE: may remove this entirely if base_uri is just going to be set dynamically
+    expect(WotApi::Base.base_uri).to eq nil
   end
 
   it "includes HTTParty" do
@@ -21,23 +22,44 @@ describe WotApi::Base do
     end
   end
 
-  describe ".application_id=" do
-    it "stores value to application_id class variable" do
-      WotApi::Base.application_id = '12345'
-      expect(WotApi::Base.application_id).to eq '12345'
+  describe "REGIONS" do
+    WotApi::Base::REGIONS.each do |region|
+      describe "#{region}" do
+        it "has a sym region key" do
+          expect(region[0]).to be_a Symbol
+        end
+
+        it "has a string value" do
+          expect(region[1]).to be_a String
+        end
+
+        it "has a https URL value" do
+          expect(URI.parse(region[1]).scheme).to eq 'https'
+        end
+      end
+    end
+  end
+
+  describe ".config" do
+    context "with a valid config" do
+      it "creates hash of regions with base_uri and application_id" do
+        WotApi::Base.config({'na' => '123456'})
+        expect(WotApi::Base.configuration).to eq({na: {base_uri: 'https://api.worldoftanks.com', application_id: '123456'}})
+      end
+
+      it "sets first item as default region" do
+        WotApi::Base.config({'na' => '123456'})
+        expect(WotApi::Base.default_region).to eq :na
+        WotApi::Base.config({'ru' => '444444','na' => '123456'})
+        expect(WotApi::Base.default_region).to eq :ru
+      end
     end
 
-    it "updates value in application_id when set multiple times" do
-      WotApi::Base.application_id = 'aaaaa'
-      expect(WotApi::Base.application_id).to eq 'aaaaa'
-      WotApi::Base.application_id = '54321'
-      expect(WotApi::Base.application_id).to eq '54321'
+    context "with an invalid config" do
+      it "raises an error" do
+        expect{WotApi::Base.config({lalala: 'fake'})}.to raise_error
+      end
     end
-
-    #it "sets the httparty default_params hash application_id key" do
-    #  WotApi::Base.application_id = '22222'
-    #  expect(WotApi::Base.default_params[:application_id]).to eq '22222'
-    #end
   end
 
   describe ".pathname" do
@@ -49,10 +71,30 @@ describe WotApi::Base do
   end
 
   describe ".merged_params" do
-    it "merges the params hash argument with the application_id" do
-      arguments = {a: 'hi', b: 'test', c: 3}
-      WotApi::Base.application_id = 'abc123'
-      expect(WotApi::Base.merged_params(arguments)).to eq arguments.merge(application_id: 'abc123')
+    context "with a region parameter" do
+      it "merges the params hash argument with the application_id from the specified region" do
+        arguments = {a: 'hi', b: 'test', c: 3, region: 'na'}
+        WotApi::Base.config(na: 'abc123')
+        expect(WotApi::Base.merged_params(arguments)).to eq({a: 'hi', b: 'test', c: 3}.merge(application_id: 'abc123'))
+      end
+    end
+
+    context "with no region parameter" do
+      it "merges the params hash argument with the application_id from the default first region" do
+        arguments = {a: 'hi', b: 'test', c: 3}
+        WotApi::Base.config(na: 'abc123')
+        expect(WotApi::Base.merged_params(arguments)).to eq arguments.merge(application_id: 'abc123')
+      end
+    end
+
+    it "sets base_uri" do
+      WotApi::Base.config(na: 'abc123')
+      WotApi::Base.merged_params({})
+      expect(WotApi::Base.base_uri).to eq WotApi::Base::REGIONS[:na]
+
+      WotApi::Base.config(ru: 'abc123')
+      WotApi::Base.merged_params({})
+      expect(WotApi::Base.base_uri).to eq WotApi::Base::REGIONS[:ru]
     end
   end
 
@@ -65,20 +107,41 @@ describe WotApi::Base do
         end
 
         it "posts to the endpoint #{endpoint}" do
-          expect(WotApi::Base).to receive(:post).exactly(1).times
+          expect(WotApi::Base).to receive(:post).and_return({'data' => true})
           WotApi::Base.send(method_name.to_sym)
         end
 
         it "accepts a hash of arguments to post to the endpoint and merges them with the application_id" do
           arguments = {a: 'hi', b: 'test', c: 3}
-          WotApi::Base.application_id = '123456'
-          expect(WotApi::Base).to receive(:post).with(endpoint, body: arguments.merge(application_id: WotApi::Base.application_id)).exactly(1).times
+          WotApi::Base.config(na: '123456')
+          expect(WotApi::Base).to receive(:post).with(endpoint, body: arguments.merge(application_id: '123456')).and_return({'data' => true})
           WotApi::Base.send(method_name.to_sym, arguments)
         end
 
-        it "receives a response from api with data in an Array or Hash" do
-          FakeWeb.register_uri(:post, "#{WotApi::Base.base_uri}#{endpoint}", :response => File.join(File.dirname(__FILE__), 'fixtures', "#{method_name}.json"))
-          expect(WotApi::Base.send(method_name.to_sym)).to be_a_kind_of(Array).or be_a_kind_of(Hash)
+        context "with a valid response" do
+          it "receives a response from api with data in an Array or Hash" do
+            FakeWeb.register_uri(:post, "#{WotApi::Base.base_uri}#{endpoint}", :response => File.join(File.dirname(__FILE__), 'fixtures', "#{method_name}.json"))
+            expect(WotApi::Base.send(method_name.to_sym)).to be_a_kind_of(Array).or be_a_kind_of(Hash)
+          end
+        end
+
+        context "with an invalid response" do
+          it "raises an exception" do
+            FakeWeb.register_uri(:post, "#{WotApi::Base.base_uri}#{endpoint}", :response => File.join(File.dirname(__FILE__), 'fixtures', "error.json"))
+            expect{WotApi::Base.send(method_name.to_sym)}.to raise_error
+          end
+
+          it "includes the error message from WoT in the exception" do
+            FakeWeb.register_uri(:post, "#{WotApi::Base.base_uri}#{endpoint}", :response => File.join(File.dirname(__FILE__), 'fixtures', "error.json"))
+            expect{WotApi::Base.send(method_name.to_sym)}.to raise_error('APPLICATION_ID_NOT_SPECIFIED')
+          end
+        end
+
+        context "with httparty exception" do
+          it "reraises the httparty exception" do
+            allow(WotApi::Base).to receive(:post).and_raise(HTTParty::Error)
+            expect{WotApi::Base.send(method_name.to_sym)}.to raise_error(HTTParty::Error)
+          end
         end
       end
     end

@@ -4,7 +4,6 @@ module WotApi
 
   class Base
     include HTTParty
-    base_uri 'https://api.worldoftanks.com'
 
     ENDPOINTS = [
       '/wot/account/list/',
@@ -41,12 +40,31 @@ module WotApi
       '/wot/tanks/achievements/'
     ]
 
-    class << self
-      attr_reader :application_id
+    REGIONS = {
+      na: 'https://api.worldoftanks.com',
+      ru: 'https://api.worldoftanks.ru',
+      eu: 'https://api.worldoftanks.eu',
+      asia: 'https://api.worldoftanks.asia',
+      kr: 'https://api.worldoftanks.kr'
+    }
 
-      def application_id=(id)
-        @application_id = id
-        #self.default_params application_id: @application_id
+    class << self
+      attr_reader :configuration
+      attr_reader :default_region
+
+      def config(params={})
+        @configuration = {}
+        @default_region = nil
+        params.each do |conf|
+          region = conf[0].to_sym
+          application_id = conf[1]
+          if REGIONS[region] && application_id
+            @default_region ||= region
+            @configuration[region] = {base_uri: REGIONS[region], application_id: application_id.to_s}
+          else
+            raise WotApi::InvalidConfigError
+          end
+        end
       end
 
       def pathname(path)
@@ -54,16 +72,32 @@ module WotApi
       end
 
       def merged_params(params)
-        params.merge({application_id: @application_id})
+        raise WotApi::InvalidConfigError unless @configuration.class == Hash
+        if region = params.delete(:region).to_sym rescue nil
+          config = @configuration[region]
+        else
+          config = @configuration[@default_region]
+        end
+        base_uri = config[:base_uri]
+        application_id = config[:application_id]
+        raise WotApi::InvalidRegionError unless base_uri && application_id
+        self.base_uri base_uri
+        params.merge({application_id: application_id})
       end
 
       ENDPOINTS.each do |endpoint|
         define_method WotApi::Base.pathname(endpoint) do |params = {}|
-          response = WotApi::Base.post(endpoint, body: merged_params(params))
+          begin
+            response = WotApi::Base.post(endpoint, body: merged_params(params))
+          rescue
+            raise
+          end
           if response && response['data']
-            response['data']
+            return response['data']
           else
-            nil
+            message = 'Unknown Error'
+            message = response['error']['message'] if response && response['error'] && response['error']['message']
+            raise WotApi::ResponseError, message
           end
         end
       end
