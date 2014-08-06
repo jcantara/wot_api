@@ -2,6 +2,8 @@
 
 API wrapper for World of Tanks
 
+[![Build Status](https://travis-ci.org/jcantara/wot_api.svg?branch=master)](https://travis-ci.org/jcantara/wot_api)
+
 ## Installation
 
 Add this line to your application's Gemfile:
