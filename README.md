@@ -45,7 +45,7 @@ Call endpoints like such:
 
     WotApi::Base.account_list(search: 'tank', region: 'ru')
 
-Will return an array or hash with the results, or nil on a failure.
+Will return an array or hash with the results, or throw an error with a message on a failure.
 
 ## Future plans
 
