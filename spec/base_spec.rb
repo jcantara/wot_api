@@ -102,6 +102,10 @@ describe WotApi::Base do
     WotApi::Base::ENDPOINTS.each do |endpoint|
       method_name = WotApi::Base.pathname(endpoint)
       describe ".#{method_name}" do
+        before(:example) do
+          WotApi::Base.config({na: '123456'})
+        end
+
         it "creates a method named #{method_name}" do
           expect(WotApi::Base.respond_to?(method_name.to_sym)).to eq true
         end
@@ -113,7 +117,6 @@ describe WotApi::Base do
 
         it "accepts a hash of arguments to post to the endpoint and merges them with the application_id" do
           arguments = {a: 'hi', b: 'test', c: 3}
-          WotApi::Base.config(na: '123456')
           expect(WotApi::Base).to receive(:post).with(endpoint, body: arguments.merge(application_id: '123456')).and_return({'data' => true})
           WotApi::Base.send(method_name.to_sym, arguments)
         end
