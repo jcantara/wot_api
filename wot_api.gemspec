@@ -27,4 +27,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "httparty", "~> 0.13"
 
   spec.requirements << "Application ID(s) from Wargaming developers portal."
+
+  spec.required_ruby_version = '>= 1.9.3'
 end

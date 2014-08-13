@@ -78,8 +78,8 @@ module WotApi
         else
           config = @configuration[@default_region]
         end
-        base_uri = config[:base_uri]
-        application_id = config[:application_id]
+        base_uri = config[:base_uri] rescue nil
+        application_id = config[:application_id] rescue nil
         raise WotApi::InvalidRegionError unless base_uri && application_id
         self.base_uri base_uri
         params.merge({application_id: application_id})

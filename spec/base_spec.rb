@@ -71,11 +71,19 @@ describe WotApi::Base do
   end
 
   describe ".merged_params" do
-    context "with a region parameter" do
+    context "with a valid region parameter" do
       it "merges the params hash argument with the application_id from the specified region" do
         arguments = {a: 'hi', b: 'test', c: 3, region: 'na'}
         WotApi::Base.config(na: 'abc123')
         expect(WotApi::Base.merged_params(arguments)).to eq({a: 'hi', b: 'test', c: 3}.merge(application_id: 'abc123'))
+      end
+    end
+
+    context "with an invalid region parameter" do
+      it "raises an exception" do
+        arguments = {a: 'hi', b: 'test', c: 3, region: 'banana'}
+        WotApi::Base.config(na: 'abc123')
+        expect{WotApi::Base.merged_params(arguments)}.to raise_error
       end
     end
 
