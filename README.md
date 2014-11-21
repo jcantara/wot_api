@@ -4,6 +4,8 @@ API wrapper for World of Tanks in Ruby
 
 [![Build Status](https://travis-ci.org/jcantara/wot_api.svg?branch=master)](https://travis-ci.org/jcantara/wot_api)
 
+[![Coverage Status](https://coveralls.io/repos/jcantara/wot_api/badge.png)](https://coveralls.io/r/jcantara/wot_api)
+
 ## Installation
 
 Add this line to your application's Gemfile:
