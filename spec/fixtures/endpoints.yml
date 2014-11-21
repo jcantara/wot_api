@@ -10,12 +10,8 @@
   search: abc
 /wot/clan/info/:
   clan_id: 1000008881
-/wot/clan/battles/:
-  clan_id: 1000008881
 /wot/clan/top/: {}
 /wot/clan/provinces/:
-  clan_id: 1000008881
-/wot/clan/victorypointshistory/:
   clan_id: 1000008881
 /wot/clan/membersinfo/:
   member_id: 1001407449
@@ -33,6 +29,14 @@
 /wot/globalwar/tournaments/:
   map_id: 1
   province_id: CA_40
+/wot/globalwar/alleyoffame/:
+  map_id: 1
+/wot/globalwar/battles/:
+  map_id: 1
+  clan_id: 1000008881
+/wot/globalwar/victorypointshistory/:
+  map_id: 1
+  clan_id: 1000008881
 /wot/encyclopedia/tanks/: {}
 /wot/encyclopedia/tankinfo/:
   tank_id: 14337
@@ -42,7 +46,11 @@
 /wot/encyclopedia/tankchassis/: {}
 /wot/encyclopedia/tankguns/: {}
 /wot/encyclopedia/achievements/: {}
+/wot/encyclopedia/info/: {}
+/wot/encyclopedia/arenas/: {}
 /wot/ratings/types/: {}
+/wot/ratings/dates/:
+  type: all
 /wot/ratings/accounts/:
   account_id: 1001407449
   type: all
@@ -53,8 +61,19 @@
 /wot/ratings/top/:
   type: all
   rank_field: xp_max_rank
-/wot/ratings/dates/:
+/wot/clanratings/types/: {}
+/wot/clanratings/dates/:
   type: all
+/wot/clanratings/clans/:
+  type: all
+  clan_id: 1000008881
+/wot/clanratings/neighbors/:
+  type: all
+  clan_id: 1000008881
+  rank_field: efficiency
+/wot/clanratings/top/:
+  type: all
+  rank_field: efficiency
 /wot/tanks/stats/:
   account_id: 1001407449
 /wot/tanks/achievements/:

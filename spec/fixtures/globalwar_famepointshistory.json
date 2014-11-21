@@ -1,0 +1,11 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 20 Nov 2014 21:26:09 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 114
+Connection: keep-alive
+Access-Control-Request-Method: GET, POST
+Access-Control-Allow-Origin: *
+X-Api-Version: 2.15.2
+
+{"status":"error","error":{"field":"access_token","message":"ACCESS_TOKEN_NOT_SPECIFIED","code":402,"value":null}}

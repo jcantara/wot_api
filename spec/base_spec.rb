@@ -40,6 +40,22 @@ describe WotApi::Base do
     end
   end
 
+  describe ".merged_post" do
+    it "calls WotApi::Base.post with endpont and merged_params output" do
+      params1 = {random: 'hash'}
+      params2 = {misc: 'data'}
+      endpoint = '/test/endpoint/'
+      expect(WotApi::Base).to receive(:merged_params).with(params1).and_return(params2)
+      expect(WotApi::Base).to receive(:post).with(endpoint, {body: params2})
+      WotApi::Base.merged_post(endpoint, params1)
+    end
+    it "has default empty hash for params" do
+      expect(WotApi::Base).to receive(:merged_params).with({}).and_return({})
+      allow(WotApi::Base).to receive(:post)
+      WotApi::Base.merged_post('/test/nothing')
+    end
+  end
+
   describe ".config" do
     context "with a valid config" do
       it "creates hash of regions with base_uri and application_id" do

@@ -28,7 +28,7 @@ Initialize the gem with your Application ID(s):
 
     WotApi::Base.config({na: '123456'})
 
-The available regions are: na, ru, eu, asia, kr
+The available regions are: :na, :ru, :eu, :asia, :kr
 
 The first region specified becomes the default if no region is specified in endpoint method arguments.
 
@@ -43,7 +43,7 @@ Along with a yaml file, config/wot_api.yml:
 
 Call endpoints like such:
 
-    WotApi::Base.account_list(search: 'tank', region: 'ru')
+    WotApi::Base.account_list(search: 'tank', region: :ru)
 
 Will return an array or hash with the results, or throw an error with a message on a failure.
 

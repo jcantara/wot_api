@@ -12,10 +12,8 @@ module WotApi
       '/wot/account/achievements/',
       '/wot/clan/list/',
       '/wot/clan/info/',
-      '/wot/clan/battles/',
       '/wot/clan/top/',
       '/wot/clan/provinces/',
-      '/wot/clan/victorypointshistory/',
       '/wot/clan/membersinfo/',
       '/wot/globalwar/clans/',
       '/wot/globalwar/famepoints/',
@@ -23,6 +21,9 @@ module WotApi
       '/wot/globalwar/provinces/',
       '/wot/globalwar/top/',
       '/wot/globalwar/tournaments/',
+      '/wot/globalwar/alleyoffame/',
+      '/wot/globalwar/battles/',
+      '/wot/globalwar/victorypointshistory/',
       '/wot/encyclopedia/tanks/',
       '/wot/encyclopedia/tankinfo/',
       '/wot/encyclopedia/tankengines/',
@@ -31,11 +32,18 @@ module WotApi
       '/wot/encyclopedia/tankchassis/',
       '/wot/encyclopedia/tankguns/',
       '/wot/encyclopedia/achievements/',
+      '/wot/encyclopedia/info/',
+      '/wot/encyclopedia/arenas/',
       '/wot/ratings/types/',
+      '/wot/ratings/dates/',
       '/wot/ratings/accounts/',
       '/wot/ratings/neighbors/',
       '/wot/ratings/top/',
-      '/wot/ratings/dates/',
+      '/wot/clanratings/types/',
+      '/wot/clanratings/dates/',
+      '/wot/clanratings/clans/',
+      '/wot/clanratings/neighbors/',
+      '/wot/clanratings/top/',
       '/wot/tanks/stats/',
       '/wot/tanks/achievements/'
     ]
@@ -85,10 +93,14 @@ module WotApi
         params.merge({application_id: application_id})
       end
 
+      def merged_post(endpoint, params={})
+        WotApi::Base.post(endpoint, body: merged_params(params))
+      end
+
       ENDPOINTS.each do |endpoint|
         define_method WotApi::Base.pathname(endpoint) do |params = {}|
           begin
-            response = WotApi::Base.post(endpoint, body: merged_params(params))
+            response = merged_post(endpoint, params)
           rescue
             raise
           end

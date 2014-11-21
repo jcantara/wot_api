@@ -1,12 +1,12 @@
 HTTP/1.1 200 OK
 Server: nginx
-Date: Thu, 29 May 2014 02:16:55 GMT
+Date: Thu, 20 Nov 2014 21:26:24 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 129
 Connection: keep-alive
-X-Api-Version: 2.11.3
+X-Api-Version: 2.15.2
 Content-Language: en
-Access-Control-Request-Method: GET, POST, HEAD
+Access-Control-Request-Method: GET, POST
 Access-Control-Allow-Origin: *
 
-{"status":"ok","count":1,"data":{"all":{"dates":[1401148800,1401062400,1400976000,1400889600,1400803200,1400716800,1400630400]}}}
+{"status":"ok","count":1,"data":{"all":{"dates":[1416355200,1416268800,1416182400,1416096000,1416009600,1415923200,1415836800]}}}

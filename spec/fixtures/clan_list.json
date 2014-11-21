@@ -1,13 +1,13 @@
 HTTP/1.1 200 OK
 Server: nginx
-Date: Thu, 29 May 2014 02:16:09 GMT
+Date: Thu, 20 Nov 2014 21:26:01 GMT
 Content-Type: application/json; charset=utf-8
-Content-Length: 670
+Content-Length: 1306
 Connection: keep-alive
 Vary: Accept-Encoding
-X-Api-Version: 2.11.3
+X-Api-Version: 2.15.2
 Content-Language: en
-Access-Control-Request-Method: GET, POST, HEAD
+Access-Control-Request-Method: GET, POST
 Access-Control-Allow-Origin: *
 
-{"status":"ok","count":1,"data":[{"owner_name":"hetep","members_count":7,"name":"Allied Brotherhood Clan","color":"#B09CA1","created_at":1365732959,"abbreviation":"ABC","emblems":{"large":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_881\/1000008881\/emblem_64x64.png","small":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_881\/1000008881\/emblem_24x24.png","bw_tank":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_881\/1000008881\/emblem_64x64_tank.png","medium":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_881\/1000008881\/emblem_32x32.png"},"clan_id":1000008881,"motto":"Pro Libertate","owner_id":1003584109}]}
+{"status":"ok","count":2,"data":[{"owner_name":"basketballjoke","members_count":5,"name":"ABC golden eagles","color":"#464745","created_at":1410469413,"abbreviation":"YOLO-","emblems":{"large":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_575\/1000017575\/emblem_64x64.png","small":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_575\/1000017575\/emblem_24x24.png","medium":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_575\/1000017575\/emblem_32x32.png","bw_tank":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_575\/1000017575\/emblem_64x64_tank.png"},"clan_id":1000017575,"motto":"dem boys","owner_id":1007222462},{"owner_name":"hetep","members_count":3,"name":"Allied Brotherhood Clan","color":"#B09CA1","created_at":1365732959,"abbreviation":"ABC","emblems":{"large":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_881\/1000008881\/emblem_64x64.png","small":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_881\/1000008881\/emblem_24x24.png","medium":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_881\/1000008881\/emblem_32x32.png","bw_tank":"http:\/\/clans.worldoftanks.com\/media\/clans\/emblems\/cl_881\/1000008881\/emblem_64x64_tank.png"},"clan_id":1000008881,"motto":"Pro Libertate","owner_id":1003584109}]}

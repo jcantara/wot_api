@@ -1,12 +1,12 @@
 HTTP/1.1 200 OK
 Server: nginx
-Date: Thu, 29 May 2014 02:16:16 GMT
+Date: Thu, 20 Nov 2014 21:26:10 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 85
 Connection: keep-alive
-X-Api-Version: 2.11.3
+X-Api-Version: 2.15.2
 Content-Language: en
-Access-Control-Request-Method: GET, POST, HEAD
+Access-Control-Request-Method: GET, POST
 Access-Control-Allow-Origin: *
 
 {"status":"ok","count":2,"data":{"page":{"total_count":0},"victorypointshistory":[]}}

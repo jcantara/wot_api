@@ -1,12 +1,12 @@
 HTTP/1.1 200 OK
 Server: nginx
-Date: Thu, 29 May 2014 02:16:08 GMT
+Date: Thu, 20 Nov 2014 21:26:01 GMT
 Content-Type: application/json; charset=utf-8
-Content-Length: 240
+Content-Length: 428
 Connection: keep-alive
-X-Api-Version: 2.11.3
+X-Api-Version: 2.15.2
 Content-Language: en
-Access-Control-Request-Method: GET, POST, HEAD
+Access-Control-Request-Method: GET, POST
 Access-Control-Allow-Origin: *
 
-{"status":"ok","count":1,"data":{"1001407449":{"achievements":{"medalCarius":3,"invader":1,"titleSniper":1,"medalLavrinenko":4,"armorPiercer":1,"medalPoppel":4,"supporter":1,"medalKay":4,"medalAbrams":3,"medalLeClerc":3,"medalKnispel":4}}}}
+{"status":"ok","count":1,"data":{"1001407449":{"achievements":{"titleSniper":15,"medalCarius":3,"invader":1,"medalLavrinenko":4,"armorPiercer":10,"medalPoppel":4,"medalKnispel":4,"medalKay":4,"medalAbrams":3,"medalLeClerc":3,"supporter":1},"frags":{"beasthunter":0,"sinai":0,"pattonValley":0},"max_series":{"armorPiercer":10,"titleSniper":15,"deathTrack":0,"invincible":2,"tacticalBreakthrough":0,"diehard":5,"handOfDeath":2}}}}

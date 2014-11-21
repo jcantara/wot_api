@@ -19,7 +19,7 @@ namespace :wotapi do
     WotApi::Base::ENDPOINTS.select{|e| e == endpoint || endpoint == 'all' }.each do |path|
       pathname = WotApi::Base.pathname(path)
       data = endpoints[path].merge({application_id: application_id}).map{|k,v| "#{k}=#{v}"}.join('&')
-      execute = "curl -is --data \"#{data}\" #{WotApi::Base.base_uri}#{path} > spec/fixtures/#{pathname}.json"
+      execute = "curl -is --data \"#{data}\" #{WotApi::Base::REGIONS[:na]}#{path} > spec/fixtures/#{pathname}.json"
       STDOUT.puts execute
       STDOUT.puts `#{execute}`
     end
