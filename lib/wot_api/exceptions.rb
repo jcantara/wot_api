@@ -6,6 +6,9 @@ module WotApi
   class ResponseError < Error
   end
 
+  class ConnectionError < Error
+  end
+
   class InvalidRegionError < Error
   end
 

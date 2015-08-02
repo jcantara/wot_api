@@ -1,6 +1,6 @@
 HTTP/1.1 200 OK
 Server: nginx
-Date: Thu, 20 Nov 2014 21:26:03 GMT
+Date: Thu, 20 Nov 2014 21:26:02 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 35
 Connection: keep-alive
@@ -9,4 +9,4 @@ Content-Language: en
 Access-Control-Request-Method: GET, POST
 Access-Control-Allow-Origin: *
 
-{"status":"ok","count":0,"data":{}}
+{"status":"ok","count":0,"data":[]}

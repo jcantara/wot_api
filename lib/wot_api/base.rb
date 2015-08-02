@@ -5,49 +5,6 @@ module WotApi
   class Base
     include HTTParty
 
-    ENDPOINTS = [
-      '/wot/account/list/',
-      '/wot/account/info/',
-      '/wot/account/tanks/',
-      '/wot/account/achievements/',
-      '/wot/clan/list/',
-      '/wot/clan/info/',
-      '/wot/clan/top/',
-      '/wot/clan/provinces/',
-      '/wot/clan/membersinfo/',
-      '/wot/globalwar/clans/',
-      '/wot/globalwar/famepoints/',
-      '/wot/globalwar/maps/',
-      '/wot/globalwar/provinces/',
-      '/wot/globalwar/top/',
-      '/wot/globalwar/tournaments/',
-      '/wot/globalwar/alleyoffame/',
-      '/wot/globalwar/battles/',
-      '/wot/globalwar/victorypointshistory/',
-      '/wot/encyclopedia/tanks/',
-      '/wot/encyclopedia/tankinfo/',
-      '/wot/encyclopedia/tankengines/',
-      '/wot/encyclopedia/tankturrets/',
-      '/wot/encyclopedia/tankradios/',
-      '/wot/encyclopedia/tankchassis/',
-      '/wot/encyclopedia/tankguns/',
-      '/wot/encyclopedia/achievements/',
-      '/wot/encyclopedia/info/',
-      '/wot/encyclopedia/arenas/',
-      '/wot/ratings/types/',
-      '/wot/ratings/dates/',
-      '/wot/ratings/accounts/',
-      '/wot/ratings/neighbors/',
-      '/wot/ratings/top/',
-      '/wot/clanratings/types/',
-      '/wot/clanratings/dates/',
-      '/wot/clanratings/clans/',
-      '/wot/clanratings/neighbors/',
-      '/wot/clanratings/top/',
-      '/wot/tanks/stats/',
-      '/wot/tanks/achievements/'
-    ]
-
     REGIONS = {
       na: 'https://api.worldoftanks.com',
       ru: 'https://api.worldoftanks.ru',
@@ -80,6 +37,7 @@ module WotApi
       end
 
       def merged_params(params)
+        params ||= {}
         raise WotApi::InvalidConfigError unless @configuration.class == Hash
         if region = params.delete(:region).to_sym rescue nil
           config = @configuration[region]
@@ -97,12 +55,14 @@ module WotApi
         WotApi::Base.post(endpoint, body: merged_params(params))
       end
 
-      ENDPOINTS.each do |endpoint|
-        define_method WotApi::Base.pathname(endpoint) do |params = {}|
+      def method_missing(method_sym, *arguments, &block)
+        puts "METHOD MISSING: " + method_sym.to_s
+        if !self.methods.include?(method_sym) && method_sym.to_s =~ /^([^_]*)_([^_]*)$/
+          endpoint = "/wot/" + method_sym.to_s.gsub('_','/') + "/"
           begin
-            response = merged_post(endpoint, params)
+            response = merged_post(endpoint, arguments.first)
           rescue
-            raise
+            raise WotApi::ConnectionError
           end
           if response && response['data']
             return response['data']
@@ -111,6 +71,8 @@ module WotApi
             message = response['error']['message'] if response && response['error'] && response['error']['message']
             raise WotApi::ResponseError, message
           end
+        else
+          super
         end
       end
     end
