@@ -47,11 +47,17 @@ Call endpoints like such:
 
     WotApi::Base.account_list(search: 'tank', region: :ru)
 
+Which wraps the '/wot/account/list' endpoint, with 'search' params and in the :ru region
+
 Will return an array or hash with the results, or throw an error with a message on a failure.
 
-## Future plans
+## Clan member resources
 
-Add class wrappers for endpoints with convenience methods for class relationships and such. 
+There is an additional endpoint used to list clan member resource counts:
+
+    WotApi::Base.clans_accounts(clan_id: "12345")
+
+This will return an array of the clan members with their recent and total resource counts
 
 ## Contributing
 
