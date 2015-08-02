@@ -22,10 +22,36 @@ describe WotApi::Base do
           expect(url).to be_a String
         end
 
-        it "has a https URL value" do
+        it "uses https" do
           expect(URI.parse(url).scheme).to eq 'https'
         end
       end
+    end
+  end
+
+  describe "REGIONS2" do
+    WotApi::Base::REGIONS2.each do |region, url|
+      describe "#{region}" do
+        it "has a sym region key" do
+          expect(region).to be_a Symbol
+        end
+
+        it "has a string value" do
+          expect(url).to be_a String
+        end
+
+        it "uses http" do
+          expect(URI.parse(url).scheme).to eq 'http'
+        end
+      end
+    end
+  end
+
+  describe ".clans_accounts" do
+    it "calls WotApi::Base.get with endpoint and clan_id" do
+      WotApi::Base.config({'na' => '123456'})
+      expect(WotApi::Base).to receive(:get).with("/clans/12345/accounts", headers: {"X-Requested-With"=> "XMLHttpRequest"})
+      WotApi::Base.clans_accounts(clan_id: "12345")
     end
   end
 

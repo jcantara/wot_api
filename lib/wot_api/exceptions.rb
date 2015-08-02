@@ -15,4 +15,7 @@ module WotApi
   class InvalidConfigError < Error
   end
 
+  class InvalidArguments < Error
+  end
+
 end

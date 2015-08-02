@@ -13,6 +13,14 @@ module WotApi
       kr: 'https://api.worldoftanks.kr'
     }
 
+    REGIONS2 = {
+      na: 'http://na.wargaming.net',
+      ru: 'http://ru.wargaming.net',
+      eu: 'http://eu.wargaming.net',
+      asia: 'http://asia.wargaming.net',
+      kr: 'http://kr.wargaming.net',
+    }
+
     class << self
       attr_reader :configuration
       attr_reader :default_region
@@ -30,6 +38,20 @@ module WotApi
             raise WotApi::InvalidConfigError
           end
         end
+      end
+
+      def clans_accounts(params)
+        params ||= {}
+        raise WotApi::InvalidArguments unless params[:clan_id]
+        if region = params.delete(:region).to_sym rescue nil
+          base_uri = REGIONS2[region]
+        else
+          base_uri = REGIONS2[@default_region]
+        end
+        raise WotApi::InvalidRegionError unless base_uri
+        self.base_uri base_uri
+        response = WotApi::Base.get("/clans/#{params[:clan_id]}/accounts", headers: {"X-Requested-With"=> "XMLHttpRequest"})
+        JSON.parse(response||"{}")['items']
       end
 
       def pathname(path)
@@ -56,7 +78,6 @@ module WotApi
       end
 
       def method_missing(method_sym, *arguments, &block)
-        puts "METHOD MISSING: " + method_sym.to_s
         if !self.methods.include?(method_sym) && method_sym.to_s =~ /^([^_]*)_([^_]*)$/
           endpoint = "/wot/" + method_sym.to_s.gsub('_','/') + "/"
           begin
