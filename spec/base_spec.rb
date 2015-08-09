@@ -29,8 +29,8 @@ describe WotApi::Base do
     end
   end
 
-  describe "REGIONS2" do
-    WotApi::Base::REGIONS2.each do |region, url|
+  describe "REGIONS_WEB" do
+    WotApi::Base::REGIONS_WEB.each do |region, url|
       describe "#{region}" do
         it "has a sym region key" do
           expect(region).to be_a Symbol
@@ -55,77 +55,25 @@ describe WotApi::Base do
     end
   end
 
-  describe ".merged_post" do
-    it "calls WotApi::Base.post with endpont and merged_params output" do
-      params1 = {random: 'hash'}
-      params2 = {misc: 'data'}
-      endpoint = '/test/endpoint/'
-      expect(WotApi::Base).to receive(:merged_params).with(params1).and_return(params2)
-      expect(WotApi::Base).to receive(:post).with(endpoint, {body: params2})
-      WotApi::Base.merged_post(endpoint, params1)
-    end
-    it "has default empty hash for params" do
-      expect(WotApi::Base).to receive(:merged_params).with({}).and_return({})
-      allow(WotApi::Base).to receive(:post)
-      WotApi::Base.merged_post('/test/nothing')
-    end
-  end
-
   describe ".config" do
     context "with a valid config" do
       it "creates hash of regions with base_uri and application_id" do
         WotApi::Base.config({'na' => '123456'})
-        expect(WotApi::Base.configuration).to eq({na: {base_uri: 'https://api.worldoftanks.com', application_id: '123456'}})
+        expect(WotApi::Base.instance_variable_get(:@configuration)).to eq({na: '123456'})
       end
 
       it "sets first item as default region" do
         WotApi::Base.config({'na' => '123456'})
-        expect(WotApi::Base.default_region).to eq :na
+        expect(WotApi::Base.instance_variable_get(:@default_region)).to eq :na
         WotApi::Base.config({'ru' => '444444','na' => '123456'})
-        expect(WotApi::Base.default_region).to eq :ru
+        expect(WotApi::Base.instance_variable_get(:@default_region)).to eq :ru
       end
     end
 
     context "with an invalid config" do
       it "raises an error" do
-        expect{WotApi::Base.config({lalala: 'fake'})}.to raise_error
+        expect{WotApi::Base.config({lalala: 'fake'})}.to raise_error WotApi::InvalidConfigError
       end
-    end
-  end
-
-  describe ".merged_params" do
-    context "with a valid region parameter" do
-      it "merges the params hash argument with the application_id from the specified region" do
-        arguments = {a: 'hi', b: 'test', c: 3, region: 'na'}
-        WotApi::Base.config(na: 'abc123')
-        expect(WotApi::Base.merged_params(arguments)).to eq({a: 'hi', b: 'test', c: 3}.merge(application_id: 'abc123'))
-      end
-    end
-
-    context "with an invalid region parameter" do
-      it "raises an exception" do
-        arguments = {a: 'hi', b: 'test', c: 3, region: 'banana'}
-        WotApi::Base.config(na: 'abc123')
-        expect{WotApi::Base.merged_params(arguments)}.to raise_error
-      end
-    end
-
-    context "with no region parameter" do
-      it "merges the params hash argument with the application_id from the default first region" do
-        arguments = {a: 'hi', b: 'test', c: 3}
-        WotApi::Base.config(na: 'abc123')
-        expect(WotApi::Base.merged_params(arguments)).to eq arguments.merge(application_id: 'abc123')
-      end
-    end
-
-    it "sets base_uri" do
-      WotApi::Base.config(na: 'abc123')
-      WotApi::Base.merged_params({})
-      expect(WotApi::Base.base_uri).to eq WotApi::Base::REGIONS[:na]
-
-      WotApi::Base.config(ru: 'abc123')
-      WotApi::Base.merged_params({})
-      expect(WotApi::Base.base_uri).to eq WotApi::Base::REGIONS[:ru]
     end
   end
 

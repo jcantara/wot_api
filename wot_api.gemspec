@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.3.0"
   spec.add_development_dependency "fakeweb", "~> 1.3"
   spec.add_development_dependency "coveralls"
+  spec.add_development_dependency "simplecov"
 
   spec.add_runtime_dependency "httparty", "~> 0.13"
 
