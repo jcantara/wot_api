@@ -28,7 +28,7 @@ NOTE: Other WoT geographical regions require different Application IDs
 
 Initialize the gem with your Application ID(s):
 
-    WotApi::Base.config({na: '123456'})
+    WotApi.config({na: '123456'})
 
 The available regions are: :na, :ru, :eu, :asia, :kr
 
@@ -36,7 +36,7 @@ The first region specified becomes the default if no region is specified in endp
 
 If using Rails, it is recommended to create an initializer that looks something like:
 
-    WotApi::Base.config(YAML.load_file("#{::Rails.root}/config/wot_api.yml"))
+    WotApi.config(YAML.load_file("#{::Rails.root}/config/wot_api.yml"))
 
 Along with a yaml file, config/wot_api.yml:
 
@@ -45,17 +45,19 @@ Along with a yaml file, config/wot_api.yml:
 
 Call endpoints like such:
 
-    WotApi::Base.account_list(search: 'tank', region: :ru)
+    WotApi.account_list(search: 'tank', region: :ru)
 
 Which wraps the '/wot/account/list' endpoint, with 'search' params and in the :ru region
 
 Will return an array or hash with the results, or throw an error with a message on a failure.
 
+NOTE: Version 1.2.0 removes the need for all api methods to be called with "WotApi::Base.method", instead can just use "WotApi.method" for less keystrokes. However, the existing methods are still available at WotApi::Base for compatibility. 
+
 ## Clan member resources
 
 There is an additional endpoint used to list clan member resource counts:
 
-    WotApi::Base.clans_accounts(clan_id: "12345")
+    WotApi.clans_accounts(clan_id: "12345")
 
 This will return an array of the clan members with their recent and total resource counts
 
