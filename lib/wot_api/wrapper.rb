@@ -26,6 +26,7 @@ module WotApi
       attr_accessor :configuration, :default_region
 
       def wot_api_post(method_sym, params)
+        params ||= {}
         endpoint = method_to_endpoint(method_sym)
         region = params.delete(:region).to_sym rescue get_default_region
         set_base_uri(region)
@@ -37,7 +38,8 @@ module WotApi
         return format_response(response)
       end
 
-      def wot_web_get(endpoint, params={})
+      def wot_web_get(endpoint, params)
+        params ||= {}
         region = params.delete(:region).to_sym rescue get_default_region
         set_base_uri(region, true)
         begin
