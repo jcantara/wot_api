@@ -41,9 +41,19 @@ describe WotApi do
         WotApi.fake_method
       end
 
-      it "calls WotApi::Wrapper.wot_api_post with method symbol and parameters" do
-        expect(WotApi::Wrapper).to receive(:wot_api_post).with(:fake_method, {hi: true})
-        WotApi.fake_method(hi: true)
+      context "with a two-part method name" do
+        it "calls WotApi::Wrapper.wot_api_post with method symbol and parameters" do
+          expect(WotApi::Wrapper).to receive(:wot_api_post).with(:fake_method, {hi: true})
+          WotApi.fake_method(hi: true)
+        end
+      end
+
+      context "with a three-part method name" do
+        it "calls WotApi::Wrapper.wot_api_post with method symbol and parameters" do
+          allow(WotApi::Wrapper).to receive(:valid_endpoint?).with(:quite_fake_method).and_return(true)
+          expect(WotApi::Wrapper).to receive(:wot_api_post).with(:quite_fake_method, {hi: true})
+          WotApi.quite_fake_method(hi: true)
+        end
       end
     end
 

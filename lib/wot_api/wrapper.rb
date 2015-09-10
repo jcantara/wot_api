@@ -28,7 +28,7 @@ module WotApi
       def wot_api_post(method_sym, params)
         params ||= {}
         endpoint = method_to_endpoint(method_sym)
-        region = params.delete(:region).to_sym rescue get_default_region
+        region = !params[:region].nil? ? params.delete(:region).to_sym : get_default_region
         set_base_uri(region)
         begin
           response = merged_post(endpoint, region, params)
@@ -40,7 +40,7 @@ module WotApi
 
       def wot_web_get(endpoint, params)
         params ||= {}
-        region = params.delete(:region).to_sym rescue get_default_region
+        region = !params[:region].nil? ? params.delete(:region).to_sym : get_default_region
         set_base_uri(region, true)
         begin
           return self.get(endpoint, params).parsed_response
@@ -50,13 +50,14 @@ module WotApi
       end
 
       def valid_endpoint?(method_sym)
-        !(method_sym.to_s =~ /^([^_]*)_([^_]*)$/).nil?
+        !(method_sym.to_s =~ /^([^_]+)_([^_]+)$/).nil? || !(method_sym.to_s =~ /^([^_]+)_([^_]+)_([^_]+)$/).nil?
       end
 
       private
 
       def method_to_endpoint(method_sym)
-        "/wot/" + method_sym.to_s.gsub('_','/') + "/"
+        method_sym = ('wot_' + method_sym.to_s).to_sym if method_sym.to_s.count('_') == 1
+        "/" + method_sym.to_s.gsub('_','/') + "/"
       end
 
       def set_base_uri(region, web=false)
