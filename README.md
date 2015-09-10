@@ -51,6 +51,12 @@ Which wraps the '/wot/account/list' endpoint, with 'search' params and in the :r
 
 Will return an array or hash with the results, or throw an error with a message on a failure.
 
+For endpoints that do not start with '/wot/' you can use a method like such:
+
+    WotApi.wgn_clans_list(search: 'bananas')
+
+to use /wgn/clans/list instead of /wot/clans/list
+
 NOTE: Version 1.2.0 removes the need for all api methods to be called with "WotApi::Base.method", instead can just use "WotApi.method" for less keystrokes. However, the existing methods are still available at WotApi::Base for compatibility. 
 
 ## Clan member resources
