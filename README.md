@@ -1,6 +1,10 @@
-# WotApi
+# DEPRECATED - WotApi
+
+Deprecating because it's quite out of date, Dependabot is unhappy with the state of things, and I don't play WoT anymore. If you are going to use this it very likely needs a bit of updating/cleaning. 
 
 API wrapper for World of Tanks in Ruby
+
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 [![Build Status](https://travis-ci.org/jcantara/wot_api.svg?branch=master)](https://travis-ci.org/jcantara/wot_api)
 
